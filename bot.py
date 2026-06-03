@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from pyrogram import Client
 from config import API_ID, API_HASH, TOKEN
 
