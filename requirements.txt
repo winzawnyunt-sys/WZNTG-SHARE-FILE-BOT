@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 pyrogram
-tgcryptpyrogram
 tgcrypto
-pymongo
 motor
+pymongo
