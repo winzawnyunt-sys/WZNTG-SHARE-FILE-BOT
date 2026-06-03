@@ -1,13 +1,22 @@
 # -*- coding: utf-8 -*-
-from pyrogram import Client
-from config import API_ID, API_HASH, TOKEN
+import asyncio
+import logging
+from bot import Bot
+from pyrogram import idle
 
-class Bot(Client):
-    def __init__(self):
-        super().__init__(
-            name="MyBot",
-            api_id=API_ID,
-            api_hash=API_HASH,
-            bot_token=TOKEN,
-            plugins=dict(root="plugins")
-        )
+# Log ကို အသေးစိတ်ပြဖို့ Setting လုပ်တာ
+logging.basicConfig(level=logging.DEBUG)
+
+async def main():
+    try:
+        print("Bot စတင်ရန် ကြိုးစားနေသည်...")
+        app = Bot()
+        await app.start()
+        print("Bot ပွင့်သွားပါပြီ!")
+        await idle()
+    except Exception as e:
+        # ဒီနေရာမှာ Error တက်ရင် ဘာကြောင့်တက်လဲဆိုတာ Log ထဲမှာ ပေါ်လာလိမ့်မယ်
+        print(f"ERROR ဖြစ်နေသည်: {e}") 
+
+if __name__ == "__main__":
+    asyncio.run(main())
