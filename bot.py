@@ -18,3 +18,14 @@ class Bot(Client):
 
     async def stop(self, *args):
         await super().stop()
+        
+from database import save_file  # database.py ထဲက save_file ဆိုတဲ့ function ကို ခေါ်လိုက်တာ
+
+# ဘော့တ်က ဖိုင်တစ်ခု လက်ခံရရှိတဲ့အခါ...
+async def handle_file(client, message):
+    file_id = message.document.file_id
+    file_name = message.document.file_name
+    
+    # Database ထဲ သိမ်းလိုက်မယ်
+    await save_file(file_id, file_name)
+    await message.reply("ဖိုင်ကို သိမ်းပြီးပါပြီ!")
