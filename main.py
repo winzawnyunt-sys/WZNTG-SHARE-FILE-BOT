@@ -4,20 +4,19 @@ import logging
 from bot import Bot
 from pyrogram import idle
 
-# Error အသေးစိတ်ကို Log ထဲမှာ ပေါ်အောင် လုပ်ပေးတာပါ
-logging.basicConfig(level=logging.INFO)
+# Log ကို အသေးစိတ်ပြဖို့ Setting လုပ်တာ
+logging.basicConfig(level=logging.DEBUG)
 
 async def main():
     try:
+        print("Bot စတင်ရန် ကြိုးစားနေသည်...")
         app = Bot()
-        print("Bot is starting...")
         await app.start()
-        print("Bot started successfully!")
+        print("Bot ပွင့်သွားပါပြီ!")
         await idle()
     except Exception as e:
-        print(f"Error တက်နေပါတယ်: {e}") # ဒီစာကြောင်းက ဘာကြောင့် Error တက်လဲဆိုတာ ပြောပြပေးလိမ့်မယ်
-    finally:
-        await app.stop()
+        # ဒီနေရာမှာ Error တက်ရင် ဘာကြောင့်တက်လဲဆိုတာ Log ထဲမှာ ပေါ်လာလိမ့်မယ်
+        print(f"ERROR ဖြစ်နေသည်: {e}") 
 
 if __name__ == "__main__":
     asyncio.run(main())
